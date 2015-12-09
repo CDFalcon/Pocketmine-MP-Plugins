@@ -37,7 +37,7 @@ class Main extends PluginBase implements Listener{
     private $setup;
 
     public function onEnable(){
-        $dataResources = $this->getDataFolder()."/resources/";
+        $dataResources = $this->getDataFolder()."/Config/";
         if(!file_exists($this->getDataFolder())) 
             @mkdir($this->getDataFolder(), 0755, true);
         if(!file_exists($dataResources)) 
@@ -80,11 +80,11 @@ class Main extends PluginBase implements Listener{
         $block = $event->getBlock();
         $player = $event->getPlayer();
         
-        if($block->getId() === Block::EMERALD && $this->isAllowedWorld($block->getLevel())){
+        if($block->getId() === Block::GLASS && $this->isAllowedWorld($block->getLevel())){
             $event->setCancelled();
             
             $player->getLevel()->setBlock($block, new Block(Block::AIR), false, true);
-            switch(mt_rand(1, 6)){
+            switch(mt_rand(1, 5)){
                    case 1:
                     if(count($this->item) > 0){
                         $r = mt_rand(0, count($this->item)-1);
@@ -92,16 +92,13 @@ class Main extends PluginBase implements Listener{
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
                         break;               
                     }
-                    $player->sendMessage($this->tag.$this->message->get("Dropped!"));
                     break;
                 case 2:
                     if(count($this->item) > 0){
                         $r = mt_rand(0, count($this->item)-1);
-                        $item = $this->item[$r];
-                        $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
+                        $item = $this->item[$r]; 1));
                         break;               
                     }
-                    $player->sendMessage($this->tag.$this->message->get("Dropped!"));
                     break;
                     
                                 case 3:
@@ -111,17 +108,24 @@ class Main extends PluginBase implements Listener{
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
                         break;               
                     }
-                    $player->sendMessage($this->tag.$this->message->get("Dropped!"));
                     break;
                 
-                                case 3:
+                                case 4:
                     if(count($this->item) > 0){
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
                         break;               
                     }
-                    $player->sendMessage($this->tag.$this->message->get("Dropped!"));
+                    break;
+
+                    case 5:
+                    if(count($this->item) > 0){
+                        $r = mt_rand(0, count($this->item)-1);
+                        $item = $this->item[$r];
+                        $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
+                        break;               
+                    }
                     break;
             }
             $player->getLevel()->save();            
