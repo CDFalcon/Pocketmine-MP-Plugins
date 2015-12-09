@@ -58,7 +58,7 @@ class Main extends PluginBase implements Listener{
 
         if(!is_numeric($this->setup->get("test")) || $this->setup->get("test") <= 0){
             $this->getServer()->getLogger()->error(":3");
-            $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("LuckyBlock"));
+            $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("RandomDropper"));
             return;
         }
 
