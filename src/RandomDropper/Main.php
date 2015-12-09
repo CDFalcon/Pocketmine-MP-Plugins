@@ -1,17 +1,17 @@
 <?php
 /**
- * LuckyBlock Copyright (C) 2015 xionbig
+ * RandomDropper Copyright (C) 2015 CDFalcon
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * @author xionbig
- * @version 1.0.0
- * @link https://github.com/xionbig/LuckyBlock
+ * @author CDFalcon
+ * @version 0.1.0
+ * @link https://github.com/CDFalcon/RandomDropper
  */
-namespace LuckyBlock;
+namespace RandomDropper;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -29,14 +29,12 @@ use pocketmine\item\Item;
 use pocketmine\nbt\tag\Compound;
 use pocketmine\nbt\tag\Int;
 use pocketmine\nbt\tag\String;
-use pocketmine\tile\Sign;
 use pocketmine\tile\Tile;
-use pocketmine\block\Sapling;
 
 class Main extends PluginBase implements Listener{ 
     private $item = [];
-    private $tag = TextFormat::YELLOW."[RandomDropper] ".TextFormat::WHITE;
-    private $setup, $message;
+    private $tag = TextFormat::BLUE."[RandomDropper] ".TextFormat::WHITE;
+    private $setup;
 
     public function onEnable(){
         $dataResources = $this->getDataFolder()."/resources/";
@@ -51,9 +49,18 @@ class Main extends PluginBase implements Listener{
                 "item3" => [],
                 "item4" => [],
                 "item5" => [],
-                "Enabled/Disabled" => [],
+                "item5" => [],
+                "status" => "on",
+                "test" => "1",
+                "level" => []]);
 
         $this->setup->save();
+
+        if(!is_numeric($this->setup->get("test")) || $this->setup->get("test") <= 0){
+            $this->getServer()->getLogger()->error(":3");
+            $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("LuckyBlock"));
+            return;
+        }
 
         foreach($this->setup->get("item1") as $id){
             $e = explode(":", $id);
@@ -66,6 +73,7 @@ class Main extends PluginBase implements Listener{
         }
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
+
 
 
     public function blockBreak(BlockBreakEvent $event){
