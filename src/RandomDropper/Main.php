@@ -52,6 +52,7 @@ class Main extends PluginBase implements Listener{
                 "item5" => [],
                 "status" => "on",
                 "test" => "1",
+                "block" => "SPONGE"
                 "level" => []]);
 
         $this->setup->save();
@@ -80,7 +81,7 @@ class Main extends PluginBase implements Listener{
         $block = $event->getBlock();
         $player = $event->getPlayer();
         
-        if($block->getId() === Block::GLASS){
+        if($block->getId() === Block::$this->setup->get("block")){
             $event->setCancelled();
             
             $player->getLevel()->setBlock($block, new Block(Block::AIR), false, true);
