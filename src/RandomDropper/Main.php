@@ -80,7 +80,7 @@ class Main extends PluginBase implements Listener{
         $block = $event->getBlock();
         $player = $event->getPlayer();
         
-        if($block->getId() === Block::GLASS && $this->isAllowedWorld($block->getLevel())){
+        if($block->getId() === Block::GLASS){
             $event->setCancelled();
             
             $player->getLevel()->setBlock($block, new Block(Block::AIR), false, true);
