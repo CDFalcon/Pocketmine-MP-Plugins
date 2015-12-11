@@ -73,10 +73,11 @@ class Main extends PluginBase implements Listener{
                    case 1:
                    break;
                    case 2:
-                    $ex = new Explosion($block, $this->setup->get("radius"));
-                    if($ex->explodeA())
-                        $ex->explodeB();
-                    break;
+                    $explosion = new Explosion($block, mt_rand(1, $this->config["radius"])); 
+                    if($explosion->explodeA()) 
+                       $explosion->explodeB(); 
+                    break; 
+               } 
             }
             $player->getLevel()->save();            
         }    
