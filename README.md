@@ -1,2 +1,5 @@
-# RandomDropper
-A small plugin for Pocketmine 1.7, used to spawn random objects when a glass block is broken
+# Plugins
+Finished: 
+1: RandomDropper - A simple random-drop block plugin.
+In progress: 
+1: TouchyTnT - TnT can explode when broken.
