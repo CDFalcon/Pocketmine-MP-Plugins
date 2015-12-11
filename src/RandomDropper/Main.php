@@ -71,6 +71,42 @@ class Main extends PluginBase implements Listener{
             }
             $this->item[] = ["id" => $id, "damage" => $damage];
         }
+        foreach($this->setup->get("item2") as $id){
+            $e = explode(":", $id);
+            $id = $e[0];
+            $damage = 0;
+            if(count($e) > 1){
+                $damage = $e[1];
+            }
+            $this->item[] = ["id" => $id, "damage" => $damage];
+        }
+        foreach($this->setup->get("item3") as $id){
+            $e = explode(":", $id);
+            $id = $e[0];
+            $damage = 0;
+            if(count($e) > 1){
+                $damage = $e[1];
+            }
+            $this->item[] = ["id" => $id, "damage" => $damage];
+        }
+        foreach($this->setup->get("item4") as $id){
+            $e = explode(":", $id);
+            $id = $e[0];
+            $damage = 0;
+            if(count($e) > 1){
+                $damage = $e[1];
+            }
+            $this->item[] = ["id" => $id, "damage" => $damage];
+        }
+        foreach($this->setup->get("item5") as $id){
+            $e = explode(":", $id);
+            $id = $e[0];
+            $damage = 0;
+            if(count($e) > 1){
+                $damage = $e[1];
+            }
+            $this->item[] = ["id" => $id, "damage" => $damage];
+        }
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
@@ -93,11 +129,12 @@ class Main extends PluginBase implements Listener{
                         break;               
                     }
                     break;
-                case 2:
+                case 3:
                     if(count($this->item) > 0){
                         $r = mt_rand(0, count($this->item)-1);
-                        $item = $this->item[$r]; 1));
-                        break;               
+                        $item = $this->item[$r];
+                        $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
+                        break;                
                     }
                     break;
                     
