@@ -21,7 +21,7 @@ use pocketmine\level\Level;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\level\Position;
-use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\block\Block;
 use pocketmine\level\Explosion;
 use pocketmine\utils\TextFormat;
@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\Int;
 use pocketmine\nbt\tag\String;
 use pocketmine\tile\Tile;
 
-class Main extends PluginBase implements Listener{ 
+class Main extends PluginBase implements Listener { 
     private $item = [];
     private $tag = TextFormat::BLUE."[RandomDropper] ".TextFormat::WHITE;
     private $setup;
@@ -112,14 +112,12 @@ class Main extends PluginBase implements Listener{
 
 
 
-    public function blockBreak(BlockBreakEvent $event){
+    public function onTouch(PlayerInteractEvent $event){
         $block = $event->getBlock();
         $player = $event->getPlayer();
         
-        if($block->getId() === Block::GLOWSTONE){
-            $event->setCancelled();
+        if($block->getId() === Block::PUMPKIN){
             
-            $player->getLevel()->setBlock($block, new Block(Block::AIR), false, true);
             switch(mt_rand(1, 5)){
                    case 1:
                     if(count($this->item) > 0){
@@ -169,4 +167,5 @@ class Main extends PluginBase implements Listener{
         }    
     }
 } 
-   
+
+
