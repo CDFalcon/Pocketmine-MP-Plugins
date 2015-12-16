@@ -30,7 +30,7 @@ use pocketmine\tile\Tile;
 
 class Main extends PluginBase implements Listener{ 
     private $item = [];
-    private $tag = TextFormat::BLUE."[RandomDropper] ".TextFormat::WHITE;
+    private $tag = TextFormat::RED."[TouchyTnT] ".TextFormat::WHITE;
     private $setup;
 
     public function onEnable(){
@@ -41,9 +41,7 @@ class Main extends PluginBase implements Listener{
             @mkdir($dataResources, 0755, true);
         
         $this->setup = new Config($dataResources. "config.yml", Config::YAML, [
-                "radius" => []
-                "leave-this-blank" => []
-                "leave-this-blank" => []]);
+                "radius" => []]);
                 
          if(!is_numeric($this->setup->get("explosion")) || $this->setup->get("radius") <= 0){
             $this->getServer()->getLogger()->error("The field 'radius' is invalid. TouchyTnT disabled!");
@@ -52,12 +50,6 @@ class Main extends PluginBase implements Listener{
         }
 
         $this->setup->save();
-
-        if(!is_numeric($this->setup->get("test")) || $this->setup->get("radius") <= 0){
-            $this->getServer()->getLogger()->error(":3");
-            $this->getServer()->getPluginManager()->disablePlugin($this->getServer()->getPluginManager()->getPlugin("TouchyTnT"));
-            return;
-        }
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
@@ -66,10 +58,8 @@ class Main extends PluginBase implements Listener{
         $player = $event->getPlayer();
         
         if($block->getId() === Block::TNT){
-            $event->setCancelled();
-            
             $player->getLevel()->setBlock($block, new Block(Block::AIR), false, true);
-            switch(mt_rand(1, 5)){
+            switch(mt_rand(1, 2)){
                    case 1:
                    break;
                    case 2:
