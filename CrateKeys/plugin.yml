@@ -1,0 +1,10 @@
+---
+name: CrateKeys
+main: CrateKeys\Main
+version: 1.0.5
+api: [1.13.0]
+load: POSTWORLD
+author: CDFalcon
+authors: [CDFalcon]
+website: https://github.com/CDFalcon/Pocketmine-MP-Plugins
+commands:
