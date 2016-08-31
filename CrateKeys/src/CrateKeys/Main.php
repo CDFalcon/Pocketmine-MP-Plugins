@@ -1,6 +1,6 @@
 <?php
 /**
- * RandomDropper Copyright (C) 2015 CDFalcon
+ * CrateKeys Copyright (C) 2015 CDFalcon
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -45,114 +45,34 @@ class Main extends PluginBase implements Listener {
                 "item3" => ["1"],
                 "item4" => ["1"],
                 "item5" => ["1"],
-				"item6" => ["1"],
+		"item6" => ["1"],
                 "item7" => ["1"],
                 "item8" => ["1"],
                 "item9" => ["1"],
                 "item10" => ["1"]]);
 
         $this->setup->save();
-
-
-        foreach($this->setup->get("item1") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item2") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item3") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item4") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item5") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-		foreach($this->setup->get("item6") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item7") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item8") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item9") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
-        }
-        foreach($this->setup->get("item10") as $id){
-            $e = explode(":", $id);
-            $id = $e[0];
-            $damage = 0;
-            if(count($e) > 1){
-                $damage = $e[1];
-            }
-            $this->item[] = ["id" => $id, "damage" => $damage];
+        
+        for($i = 10; i < 11; i++)
+        {
+        	foreach($this->setup->get("item"i) as $id){
+        		$e = explode(":", $id);
+        		$id = $e[0];
+        		$damage = 0;
+        		if(count($e) > 1){
+        		$damage = $e[1];
+            		}
+            	$this->item[] = ["id" => $id, "damage" => $damage];
+        	}
         }
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-
     public function onTouch(PlayerInteractEvent $event){
         $block = $event->getBlock();
         $player = $event->getPlayer();
-		$inventory = $player->getInventory();
+	$inventory = $player->getInventory();
         
         if($block->getId() === Block::CHEST){
 			
@@ -166,8 +86,8 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
                         break;						
                     }
                     break;
@@ -176,9 +96,9 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
-						 break;
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;						
                     }
                     break;
                     
@@ -187,9 +107,9 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1));  
-						 break;
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;						
                     }
                     break;
                 
@@ -198,9 +118,9 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));         
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1));  		
-                        break;						
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;											
                     }
                     break;
 
@@ -209,20 +129,20 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1));  	
-                        break;						
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;											
                     }
                     break;
 					
-					case 6:
+		    case 6:
                     if(count($this->item) > 0){
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
-                        break;						
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;											
                     }
                     break;
 					
@@ -231,9 +151,9 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
-						 break;
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;						
                     }
                     break;
                     
@@ -242,9 +162,9 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1));  
-						 break;
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;						
                     }
                     break;
                 
@@ -253,9 +173,9 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));         
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1));  		
-                        break;						
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;									
                     }
                     break;
 
@@ -264,9 +184,9 @@ class Main extends PluginBase implements Listener {
                         $r = mt_rand(0, count($this->item)-1);
                         $item = $this->item[$r];
                         $player->getLevel()->dropItem($block, new Item($item["id"], $item["damage"], 1));
-						$player->sendMessage("Used CrateKey");
-						$inventory->removeItem(new \pocketmine\item\Emerald(0,1));  	
-                        break;						
+			$player->sendMessage("Used CrateKey");
+			$inventory->removeItem(new \pocketmine\item\Emerald(0,1)); 
+                        break;											
                     }
                     break;
             }
